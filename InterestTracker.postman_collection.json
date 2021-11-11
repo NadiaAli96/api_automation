@@ -62,7 +62,7 @@
 					"mode": "graphql",
 					"graphql": {
 						"query": "mutation($input: CreateContactInput!) {\n  createContact(input: $input) {\n    contact {\n      id\n      fullName\n      companyName\n      email\n      userId\n      socialMediaLinks {\n        facebook\n        linkedin\n        twitter\n      }\n    }\n    userErrors {\n      message\n      path\n    }\n  }\n}\n",
-						"variables": "{\n    \"input\":{\n        \"fullName\": \"{{name}}\",\n        \"userId\":5307,\n        \"email\":\"{{email}}\",\n        \"companyName\":\"{{company}}\"\n\n    }\n}"
+						"variables": "{\n    \"input\":{\n        \"fullName\": \"steve\",\n        \"userId\":5307,\n        \"email\":\"steve@gmail.com\",\n        \"companyName\":\"sendoso\"\n\n    }\n}"
 					}
 				},
 				"url": {

@@ -33,6 +33,7 @@
 					"script": {
 						"exec": [
 							"var response=JSON.parse(responseBody);",
+							"console.log(response);",
 							"pm.globals.set(\"contact-id\",response.data.createContact.contact.id);",
 							"pm.test(\"contact is created\", function () {",
 							"    pm.expect(pm.response.text()).to.include('steve')",
@@ -84,7 +85,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"exec": [],
+						"exec": [
+							"pm.test(\"contact is deleted\", function () {",
+							"    pm.expect(pm.response.text()).to.include('steve');",
+							"});"
+						],
 						"type": "text/javascript"
 					}
 				}

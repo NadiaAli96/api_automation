@@ -84,11 +84,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"exec": [
-							"pm.test(\"contact is deleted\", function () {",
-							"    pm.expect(pm.response.text()).to.include('steve');",
-							"});"
-						],
+						"exec": [],
 						"type": "text/javascript"
 					}
 				}

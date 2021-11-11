@@ -33,6 +33,7 @@
 					"script": {
 						"exec": [
 							"var response=JSON.parse(responseBody);",
+							"console.log(12345676);",
 							"console.log(response);",
 							"pm.globals.set(\"contact-id\",response.data.createContact.contact.id);",
 							"pm.test(\"contact is created\", function () {",

@@ -1,0 +1,227 @@
+{
+	"info": {
+		"_postman_id": "315ba1ce-b0df-4df6-8c01-33ab876de7b0",
+		"name": "IT2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response=JSON.parse(responseBody);",
+							"pm.globals.set(\"contact-id\",response.data.createContact.contact.id);",
+							"pm.test(\"contact is created\", function () {",
+							"    pm.expect(pm.response.text()).to.include('steve')",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var random=Math.random().toString(36)",
+							"var current_timestamp = new Date();",
+							"postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());",
+							"let email = 'steve.' + random + '@sendoso.com'",
+							"pm.environment.set(\"variable_key\", \"variable_value\");",
+							"let companyName='sendoso'",
+							"let name='steve'",
+							"let userId=5307",
+							"pm.environment.set('email',email);",
+							"pm.environment.set('name',name);",
+							"pm.environment.set('company',companyName);",
+							"pm.environment.set('owner', userId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "staging.sendoso.com"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"95\", \"Chromium\";v=\"95\", \";Not A Brand\";v=\"99\""
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-csrf-token",
+						"value": "{{XCRFToken}}"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "origin",
+						"value": "https://staging.sendoso.com"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://staging.sendoso.com/contacts"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8"
+					},
+					{
+						"key": "cookie",
+						"value": "{{cookie-custom}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"operationName\":null,\"variables\":{\"input\":{\"userId\":5307,\"id\":\"\",\"fullName\":\"{{name}}\",\"email\":\"{{email}}\",\"companyName\":\"{{company}}\",\"socialMediaLinks\":{\"linkedin\":\"https://www.jafaqomivybigy.us\",\"facebook\":\"https://www.birygi.co.uk\",\"twitter\":\"https://www.ximorek.org.au\"}}},\"query\":\"mutation ($input: CreateContactInput!) {\\n  createContact(input: $input) {\\n    contact {\\n      id\\n      fullName\\n      companyName\\n      email\\n      userId\\n      socialMediaLinks {\\n        facebook\\n        linkedin\\n        twitter\\n        __typename\\n      }\\n      __typename\\n    }\\n    userErrors {\\n      message\\n      path\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"}"
+				},
+				"url": {
+					"raw": "https://staging.sendoso.com/graphql",
+					"protocol": "https",
+					"host": [
+						"staging",
+						"sendoso",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"contact is deleted\", function () {",
+							"    pm.expect(pm.response.text()).to.include('steve');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authority",
+						"value": "staging.sendoso.com"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"95\", \"Chromium\";v=\"95\", \";Not A Brand\";v=\"99\""
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-csrf-token",
+						"value": "{{XCRFToken}}"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					},
+					{
+						"key": "origin",
+						"value": "https://staging.sendoso.com"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "referer",
+						"value": "https://staging.sendoso.com/contacts"
+					},
+					{
+						"key": "accept-language",
+						"value": "en-GB,en-US;q=0.9,en;q=0.8"
+					},
+					{
+						"key": "cookie",
+						"value": "{{cookie-custom}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"operationName\":null,\"variables\":{\"input\":{\"contactId\":{{contact-id}}}},\"query\":\"mutation ($input: DeleteContactInput!) {\\n  deleteContact(input: $input) {\\n    contact {\\n      fullName\\n      __typename\\n    }\\n    userErrors {\\n      message\\n      path\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"}"
+				},
+				"url": {
+					"raw": "https://staging.sendoso.com/graphql",
+					"protocol": "https",
+					"host": [
+						"staging",
+						"sendoso",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
